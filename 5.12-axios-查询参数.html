@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p></p>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1/dist/axios.min.js">
+    </script>
+    <script>
+        axios({
+            url:'https://hmajax.itheima.net/api/city',
+            // params:{
+            //     参数名：值
+            // }
+            params:{
+                pname: '河北省'
+                //查询河北省下的城市
+                //城市列表：'https://hmajax.itheima.net/api/city?pname=河北省'
+            }
+        }).then(result=>{
+            // console.log(result);
+            console.log(result.data.list);  //得到了河北省下的城市列表数组
+            document.querySelector('p').innerHTML = result.data.list.join('<br>');
+        })
+    </script>
+
+
+
+    <!-- 
+    URL查询参数：浏览器提供给服务区额外信息，获得对应数据
+ -->
+</body>
+</html>
