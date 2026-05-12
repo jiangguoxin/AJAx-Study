@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            font-size: 16px;
+            --primary-color: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg-color: #f3f4f6;
+            --border-color: #d1d5db;
+            --text-color: #374151;
+            --card-bg: #ffffff;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            margin: 0;
+            padding-top: 50px;
+        }
+
+        ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            list-style: none;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            margin: 0 auto;
+            background-color: var(--card-bg);
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .col {
+            flex: 1;
+        }
+
+        .mb-3 {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-lable {
+            font-size: 14px;
+            font-weight: 500;
+            color: #4b5563;
+        }
+
+        .form-control {
+            width: 100%;
+            box-sizing: border-box;
+            border-radius: 6px;
+            font-size: 14px;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            transition: all 0.2s ease-in-out;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.2s ease;
+        }
+
+        .btn:hover {
+            background-color: var(--primary-hover);
+        }
+
+        p {
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: #111827;
+        }
+
+        .list-group-item {
+            border: 1px solid #e5e7eb;
+            padding: 12px 16px;
+            margin-bottom: 8px;
+            border-radius: 6px;
+            background-color: #f9fafb;
+            transition: background-color 0.2s;
+        }
+
+        .list-group-item:hover {
+            background-color: #f3f4f6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <form id="aditForm" class="row">
+            <!-- 输入省份名字 -->
+            <div class="mb-3 col">
+                <label class="form-lable">省份名字:</label>
+                <input type="text" value="北京" name="province" class="form-control province" placeholder="请输入省份名称">
+            </div>
+            <!-- 输入城市名字 -->
+            <div class="mb-3 col">
+                <label class="form-lable">城市名字:</label>
+                <input type="text" value="北京市" name="city" class="form-control city" placeholder="请输入城市名称">
+            </div>
+        </form>
+        <button type="button" class="btn btn-primary sel-btn">查询</button>
+        <br><br>
+        <p>地区列表：</p>
+        <ul class="list-group">
+            <!-- 示例地区 -->
+            <li class="list-group-item">东城区</li>
+        </ul>
+    </div>
+</body>
+
+</html>
