@@ -26,6 +26,12 @@
                 }
             }).then(result=>{
                 console.log(result);
+            }).catch(error=>{
+                // Axios 会把服务器返回的错误信息封装在 error.response 中
+                console.dir(error); 
+                // console.log(error);
+                console.log(error.response.data.message); 
+                alert(error.response.data.message);
             })
         })
     </script>
