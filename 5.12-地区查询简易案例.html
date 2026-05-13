@@ -140,6 +140,39 @@
             <li class="list-group-item">东城区</li>
         </ul>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1/dist/axios.min.js">
+    </script>
+    <script>
+        // 1.查询按钮点击事件
+        document.querySelector('.btn').addEventListener
+        ('click',()=>{
+        // 2.获取输入的省份和城市名字
+        let pname = document.querySelector('.province').value;
+        let cname = document.querySelector('.city').value;
+            console.log(pname, cname);
+            
+
+            // 3.基于axios请求对应的地区列表数据
+            axios({
+                url: 'https://hmajax.itheima.net/api/area',
+                params:{
+                    pname:pname,
+                    cname:cname,
+                }
+            }).then(result=>{
+                // console.log(result); 已经成功获取到了数据
+                // 4. 把数据转li标签插入到页面中
+                let list = result.data.list; //获取到了地区列表数组
+                // console.log(list);
+                // 获取的数据是数组的形式
+                // map  join
+                let theli = list.map(areaName=>`<li class="list-group-item">${areaName}</li>`).join('');
+                // console.log(theli);
+                // 需要渲染到li标签中
+                document.querySelector('.list-group').innerHTML = theli;
+            })
+        })
+    </script>
 </body>
 
 </html>
