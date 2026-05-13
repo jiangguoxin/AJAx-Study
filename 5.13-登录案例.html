@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            background-color: #f7f7f7;
+        }
+        .container {
+            width: 400px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #fff;
+            border: 1px solid #333;
+        }
+        h3 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .alert {
+            padding: 10px 15px;
+            margin-bottom: 20px;
+            border: 1px solid transparent;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .alert-success {
+            color: #0f5132;
+            background-color: #d1e7dd;
+            border-color: #badbcc;
+        }
+        .mb-3 {
+            margin-bottom: 15px;
+        }
+        .form-label {
+            display: inline-block;
+            margin-bottom: 8px;
+            color: #666;
+            font-size: 14px;
+        }
+        .form-control {
+            display: block;
+            width: 100%;
+            padding: 8px 12px;
+            font-size: 14px;
+            color: #333;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            outline: none;
+        }
+        .form-control:focus {
+            border-color: #0d6efd;
+        }
+        .btn {
+            display: inline-block;
+            font-weight: 400;
+            text-align: center;
+            border: 1px solid transparent;
+            padding: 6px 18px;
+            font-size: 14px;
+            border-radius: 4px;
+            cursor: pointer;
+            color: #fff;
+        }
+        .btn-primary {
+            background-color: #0d6efd;
+            border-color: #0d6efd;
+        }
+        .btn-primary:active {
+            background-color: #0b5ed7;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h3>欢迎-登录</h3>
+        <!-- 登录结果-提示框 -->
+        <div class="alert alert-success" role="alert" style="display: none;">
+            提示消息
+        </div>
+        <!-- 表单 -->
+        <div class="form_wrap">
+            <form>
+                <div class="mb-3">
+                    <label for="username" class="form-label">账号名</label>
+                    <input type="text" class="form-control username">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">密码</label>
+                    <input type="password" class="form-control password">
+                </div>
+                <button type="button" class="btn btn-primary btn-login"> 登 录 </button>
+            </form>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/axios@1/dist/axios.min.js">
+    </script>
+    <script>
+        // 目标1 ：点击登录时 用户名和密码长度判断，并提交数据和服务器进行登录验证
+        // 1.1 登录-点击事件
+        document.querySelector('.btn-login').addEventListener('click',()=>{
+            const username = document.querySelector('.username').value;
+            const password = document.querySelector('.password').value;
+            console.log(username);
+            console.log(password);
+            if(username.length < 8){
+                alert('用户名长度必须在大于等于8个字符');
+                return;
+            }
+            if(password.length < 6){
+                alert('密码长度必须大于等于6个字符');
+                return;
+            }
+            axios({
+                method: 'post',
+                url: 'http://hmajax.itheima.net/api/login',
+                data: {
+                    username: username,
+                    password: password
+                }
+            }).then(result=>{
+                console.log(result);
+                // Axios 的 then 说明 HTTP 请求成功（如状态码 2xx）
+                alert(result.data.message);
+            }).catch(err=>{
+                console.log(err);
+                if (err.response) {
+                    alert('登录失败，' + err.response.data.message);
+                } else {
+                    alert('登录失败，网络异常');
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
