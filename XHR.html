@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 创建对象
+        const xhr = new XMLHttpRequest();
+        // 配置请求方法和URL
+        xhr.open('GET','http://hmajax.itheima.net/api/province');
+        // 监听loadend事件，接收响应结果
+        xhr.addEventListener('loadend',function(){
+            console.log(xhr.response);
+            console.log(JSON.parse(xhr.response).list.join('<br>'));
+        })
+        // 发送请求
+        xhr.send();
+    </script>
+</body>
+</html>
