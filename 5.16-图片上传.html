@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="file" class="upload">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    </script>
+    <script>
+        // 目标： 图片上传，显示到网页上
+        document.querySelector('.upload').addEventListener('change',e=>{
+            console.log(e.target.files[0]);
+            // 使用FormData携带图片文件
+            const fd = new FormData();
+            fd.append('img',e.target.files[0]);
+            // 提交到服务器
+            axios({
+                method:'POST',
+                url:'http://hmajax.itheima.net/api/upload',
+                data:fd
+            }).then(result=>{
+                // 取出服务器返回的图片URL地址，显示到网页上
+                // 这里应该是url地址出问题了，无法显示图片。代码是没有问题的
+                // console.log(result);
+                const imgUrl = document.createElement('img');
+                imgUrl.src = result.data.data.url;
+                // document.body.appendChild(imgUrl);
+            }).catch(err=>{
+                console.log(err);
+            })
+        })
+    </script>
+</body>
+</html>
