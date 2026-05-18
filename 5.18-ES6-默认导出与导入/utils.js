@@ -11,3 +11,10 @@ export default {
     url: baseURL,
     arraySum: getArraySum
 }
+
+
+
+// 命名标准的使用
+// 导出
+// export const baseURL = 'http://hmajax.itheima.net';
+// export const getArraySum = arr=>arr.reduce((sum,item)=>sum+item,0);
